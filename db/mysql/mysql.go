@@ -2,6 +2,7 @@ package mysql
 
 import (
 	"fmt"
+	"github.com/s-engine/library/log"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -25,11 +26,13 @@ func GetDB(name string) *gorm.DB {
 
 func InitMysql(dbs []DB) error {
 	for _, db := range dbs {
-		dsn := fmt.Sprintf("%s:%s@(%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", db.User, db.Pass, db.Host, db.Name)
+		dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", db.User, db.Pass, db.Host, db.Name)
+		log.Info(dsn)
 		gdb, err := gorm.Open(mysql.New(mysql.Config{DSN: dsn}))
 		if err != nil {
 			return err
 		}
+
 		pool[db.Name] = gdb
 	}
 	return nil

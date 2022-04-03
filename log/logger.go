@@ -22,7 +22,7 @@ type XLogger struct {
 }
 
 func init() {
-
+	SetLogger(nil)
 }
 
 func SetLogger(log Logger) {
@@ -51,17 +51,17 @@ func Debug(args ...interface{}) {
 }
 
 func Infof(fmt string, args ...interface{}) {
-	xLogger.logger.Infof(fmt, args)
+	xLogger.logger.Infof(fmt, args...)
 }
 
 func Warnf(fmt string, args ...interface{}) {
-	xLogger.logger.Infof(fmt, args)
+	xLogger.logger.Infof(fmt, args...)
 }
 
 func Errorf(fmt string, args ...interface{}) {
-	xLogger.logger.Infof(fmt, args)
+	xLogger.logger.Infof(fmt, args...)
 }
 
 func Debugf(fmt string, args ...interface{}) {
-	xLogger.logger.Infof(fmt, args)
+	xLogger.logger.Infof(fmt, args...)
 }
